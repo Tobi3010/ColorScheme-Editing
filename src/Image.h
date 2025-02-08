@@ -21,5 +21,8 @@ struct Image {
     bool read(const char* filename);
 
     ImageType getFileType(const char* filename);
+
+    Image& grayscale_avg();
+    Image& grayscale_lum();
    
 };
