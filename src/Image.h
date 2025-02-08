@@ -1,5 +1,7 @@
 #include <stdint.h>
 #include <cstdio>
+#include <algorithm>
+
 
 enum ImageType {
     PNG, JPG, BMP, TGA
@@ -24,10 +26,12 @@ struct Image {
 
     Image& grayscale_avg();
     Image& grayscale_lum();
+    Image& grayscale_light();
 
     private: 
         Image& grayscale(int (*f)(uint8_t*));
         static int avg_method(uint8_t* data);
         static int lum_method(uint8_t* data);
+        static int light_method(uint8_t* data);
    
 };

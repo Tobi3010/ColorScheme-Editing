@@ -28,6 +28,10 @@ int main() {
     gray_lum.grayscale_lum();
     gray_lum.write("gray_lum.jpg");
 
+    Image gray_light = test;
+    gray_light.grayscale_light();
+    gray_light.write("gray_light.jpg");
+
 
     return 0;
 

@@ -96,15 +96,21 @@ int Image::avg_method(uint8_t* data){
 int Image::lum_method(uint8_t* data){
     return (0.2126 * data[0] + 0.7152 * data[1] + 0.0722 * data[2]) / 3;
 }
+int Image::light_method(uint8_t* data){
+    return (std::max(data[0], std::max(data[1], data[2]))  + std::min(data[0], std::min(data[1], data[2]))) / 2;
+}
 
 // Grayscale by average method
 Image& Image::grayscale_avg(){
     return grayscale(&(avg_method));
 }
-
 // Grayscale by luminosity method
 Image& Image::grayscale_lum(){
     return grayscale(&lum_method);
+}
+// Grayscale by lighting method
+Image& Image::grayscale_light(){
+    return grayscale(&light_method);
 }
 
 
