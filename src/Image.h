@@ -24,5 +24,10 @@ struct Image {
 
     Image& grayscale_avg();
     Image& grayscale_lum();
+
+    private: 
+        Image& grayscale(int (*f)(uint8_t*));
+        static int avg_method(uint8_t* data);
+        static int lum_method(uint8_t* data);
    
 };

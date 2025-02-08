@@ -75,19 +75,38 @@ ImageType Image::getFileType(const char* filename){
 }
 
 
-Image& Image::grayscale_avg(){
+// Average and luminosity methods for converting image to grayscale, see https://www.johndcook.com/blog/2009/08/24/algorithms-convert-color-grayscale/
+// function to convert image to grayscale, takes a grayscale method function as argument.
+Image& Image::grayscale(int (*grayscale_method)(uint8_t*)){
     if(channels < 3) {
         printf("Image %p has less than 3 channels, assumed it is grayscale already", this);
     }
     else {
         for(int i = 0; i < size; i += channels) {
-            int gray = (data[i] + data[i + 1] + data[i + 2]) / 3; // (r + g + b) / 3
+            int gray = grayscale_method(&data[i]);
             memset(data + i, gray, 3);
         }
     }
     return *this;
 }
 
-Image& Image::grayscale_lum(){
-    return *this;
+int Image::avg_method(uint8_t* data){
+    return (data[0] + data[1] + data[2]) / 3; 
 }
+int Image::lum_method(uint8_t* data){
+    return (0.2126 * data[0] + 0.7152 * data[1] + 0.0722 * data[2]) / 3;
+}
+
+// Grayscale by average method
+Image& Image::grayscale_avg(){
+    return grayscale(&(avg_method));
+}
+
+// Grayscale by luminosity method
+Image& Image::grayscale_lum(){
+    return grayscale(&lum_method);
+}
+
+
+
+

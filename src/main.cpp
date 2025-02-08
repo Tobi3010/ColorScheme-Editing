@@ -19,9 +19,15 @@ int main() {
     */
 
     Image test("test.jpg");
+
     Image gray_avg = test;
     gray_avg.grayscale_avg();
-    gray_avg.write("gray_avg.png");
+    gray_avg.write("gray_avg.jpg");
+
+    Image gray_lum = test;
+    gray_lum.grayscale_lum();
+    gray_lum.write("gray_lum.jpg");
+
 
     return 0;
 
