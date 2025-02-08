@@ -28,6 +28,8 @@ struct Image {
     Image& grayscale_lum();
     Image& grayscale_light();
 
+    Image& colorMask(float r, float g, float b);
+
     private: 
         Image& grayscale(int (*f)(uint8_t*));
         static int avg_method(uint8_t* data);

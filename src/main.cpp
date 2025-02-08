@@ -18,6 +18,7 @@ int main() {
     blank.write("blank.jpg");
     */
 
+    /* Tests for grayscale
     Image test("test.jpg");
 
     Image gray_avg = test;
@@ -31,7 +32,23 @@ int main() {
     Image gray_light = test;
     gray_light.grayscale_light();
     gray_light.write("gray_light.jpg");
+    */
 
+    Image blue("test.jpg");
+    blue.colorMask(0, 0, 1);
+    blue.write("blue.png");
+
+    Image green("test.jpg");
+    green.colorMask(0, 1, 0);
+    green.write("green.png");
+
+    Image red("test.jpg");
+    red.colorMask(1, 0, 0);
+    red.write("red.png");
+
+    Image redGreen("test.jpg");
+    redGreen.colorMask(1, 1, 0);
+    redGreen.write("redGreen.png");
 
     return 0;
 
